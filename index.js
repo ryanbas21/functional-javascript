@@ -68,8 +68,18 @@ const map = (fn, arr) => reduce((acc, element) => acc.concat([fn(element)]), [],
  *  @param  {[ array ]} arr [iterable]
  *  @return {[boolean]} [whether the every element passes the predicate]
  */
-const every = (fn, arr) => reduce((acc, element) => fn(element) === true, 0, arr);
+const every = (fn, arr) => {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (!fn(arr[i])) return false
+  }
+  return true;
+};
 
-const logEvery = trace('should test every');
-logEvery(every((num) => num < 5, [1, 2, 3, 4])); // true
-logEvery(every((num) => num < 5, [1, 2, 3, 4, 5])); // false
+const some = (fn, arr) => {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (fn(arr[i])) return true
+  }
+  return false;
+}
+
+const log = trace('value is ')(some(num => num !== 0, [0,0,0,0]));
