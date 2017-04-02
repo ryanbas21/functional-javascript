@@ -9,8 +9,36 @@ const {
   filter,
   add2,
   increment,
+  toLower,
+  take,
+  sum,
+  subtract,
+  divide,
+  multiply,
 } = require('../lib/index.js');
 
+test('should test compose', (assert) => {
+  const cb1 = num => num + 1;
+  const cb2 = num => num - 2;
+  const cb3 = num => num * 1;
+  const msg = 'should compose the functions right to left';
+  const actual = compose(cb1, cb2, cb3)(10);
+  const expected = 9;
+  console.log(actual);
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+test('should test pipe', (assert) => {
+  const cb1 = num => num + 1;
+  const cb2 = num => num - 2;
+  const cb3 = num => num * 1;
+  const msg = 'should pipe the functions left to right';
+  const actual = compose(cb1, cb2, cb3)(10);
+  const expected = 9;
+  console.log(actual);
+  assert.same(actual, expected, msg);
+  assert.end();
+});
 test('should test every', (assert) => {
   const msg = 'every item should pass';
   const actual = every(num => num < 5, [1, 2, 3, 4]);
@@ -96,10 +124,65 @@ test('map should return an array with a callback applied', (assert) => {
   assert.same(actual, expected, msg);
   assert.end();
 });
+
 test('increment should increment by 1', (assert) => {
   const msg = 'should increment by one';
   const actual = increment(1);
   const expected = 2;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should make a string lower case', (assert) => {
+  const msg = 'should turn a string to lower case';
+  const actual = toLower('TEST');
+  const expected = 'test';
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should take n from list', (assert) => {
+  const msg = 'should take the first n items from array';
+  const actual = take(5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const expected = [1, 2, 3, 4, 5];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should sum all numbers together', (assert) => {
+  const msg = 'should sum up an array';
+  const actual = sum([1, 2, 3, 4]);
+  const expected = 10;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should subtract all the numbers', (assert) => {
+  const msg = 'should reduce the array';
+  const actual = subtract(20, [1, 2, 3, 4]);
+  const expected = 10;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should multiply all the numbers in the list', (assert) => {
+  const msg = 'should multiply the numbers in the list';
+  const actual = multiply(1, [1, 2, 3, 4]);
+  const expected = 24;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should divide all the numbers in the list', (assert) => {
+  const msg = 'should divide the numbers';
+  const actual = divide(1, [2, 4, 6]);
+  const expected = 3;
 
   assert.same(actual, expected, msg);
   assert.end();

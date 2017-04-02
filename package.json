@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "pretest": "npm run -s lint",
     "test": "cross-env NODE_PATH='source' node test/index.js",
-    "watch": "watch 'clear && npm run -s test' test"
+    "watch": "watch 'clear && npm run -s lib' lib"
   },
   "repository": {
     "type": "git",
