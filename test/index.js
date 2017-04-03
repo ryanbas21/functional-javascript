@@ -20,6 +20,9 @@ const {
   slice,
   uniq,
   range,
+  forEach,
+  identity,
+  difference,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -240,6 +243,33 @@ test('should create a range', (assert) => {
   const msg = 'should create an array from n to y';
   const actual = range(0, 10);
   const expected = [...Array(10).keys()];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should iterate the array and apply a callback', (assert) => {
+  const msg = 'should iterate the entire array';
+  const actual = forEach(num => num + 1, [1, 2, 3]);
+  const expected = undefined;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('Should test Identity', (assert) => {
+  const msg = 'should return the parameter it takes in';
+  const actual = identity(1);
+  const expected = 1;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('Should find the difference between the two lists', (assert) => {
+  const msg = 'should return a list of unique values beween the two lists';
+  const actual = difference([1, 2, 3], [1, 4, 5, 6, 7, 8, 9]);
+  const expected = [2, 3];
 
   assert.same(actual, expected, msg);
   assert.end();
