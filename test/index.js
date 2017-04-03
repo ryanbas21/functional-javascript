@@ -18,6 +18,8 @@ const {
   pluck,
   contains,
   slice,
+  uniq,
+  range,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -220,6 +222,24 @@ test('should test if item is contained in an array', (assert) => {
   const msg = 'should return boolean if item is in collection';
   const actual = contains('sam', [1, 3, 'sam', 'mike']);
   const expected = true;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should return a new set of unique values', (assert) => {
+  const msg = 'should return an array of unique values';
+  const actual = uniq([1, 1, 1, 2, 4, 5, 5, 5, 6, 7, 7, 8, 8, 89]);
+  const expected = [1, 2, 4, 5, 6, 7, 8, 89];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should create a range', (assert) => {
+  const msg = 'should create an array from n to y';
+  const actual = range(0, 10);
+  const expected = [...Array(10).keys()];
 
   assert.same(actual, expected, msg);
   assert.end();
