@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run -s lint",
-    "test": "cross-env NODE_PATH='source' node test/index.js | node_modules/.bin/tap-dot",
+    "test": "cross-env NODE_PATH='source' node test/index.js | tap-dot",
     "watch": "watch 'clear && npm run -s test' lib"
   },
   "repository": {
@@ -36,7 +36,7 @@
     "watch": "0.18.0"
   },
   "dependencies": {
-    "tap-dot": "^1.0.5",
-    "tape": "^4.6.3"
+    "blue-tape": "1.0.0",
+    "tap-dot": "^1.0.5"
   }
 }
