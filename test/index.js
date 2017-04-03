@@ -240,7 +240,7 @@ test('should return a new set of unique values', (assert) => {
 });
 
 test('should create a range', (assert) => {
-  const msg = 'should create an array from n to y';
+  const msg = 'Should create an array from n to y';
   const actual = range(0, 10);
   const expected = [...Array(10).keys()];
 
