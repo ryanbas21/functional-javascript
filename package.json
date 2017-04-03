@@ -1,5 +1,6 @@
 {
   "name": "functional-javascript",
+  "author": "Ryan Basmajian",
   "version": "1.0.0",
   "description": "<div>   A focus on writing all of these functions with functional programming in mind. </div>",
   "main": "index.js",
@@ -10,7 +11,7 @@
     "lint": "eslint .",
     "pretest": "npm run -s lint",
     "test": "cross-env NODE_PATH='source' node test/index.js",
-    "watch": "watch 'clear && npm run -s lib' lib"
+    "watch": "watch 'clear && npm run -s test' lib"
   },
   "repository": {
     "type": "git",

@@ -15,6 +15,9 @@ const {
   subtract,
   divide,
   multiply,
+  pluck,
+  contains,
+  slice,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -39,6 +42,7 @@ test('should test pipe', (assert) => {
   assert.same(actual, expected, msg);
   assert.end();
 });
+
 test('should test every', (assert) => {
   const msg = 'every item should pass';
   const actual = every(num => num < 5, [1, 2, 3, 4]);
@@ -183,6 +187,39 @@ test('should divide all the numbers in the list', (assert) => {
   const msg = 'should divide the numbers';
   const actual = divide(1, [2, 4, 6]);
   const expected = 3;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should pluck from an array', (assert) => {
+  const arr = [
+    { name: 'moe', age: 40 },
+    { name: 'homer', age: 38 },
+    { name: 'Sideshow Bob', age: 27 },
+  ];
+  const msg = 'should pluck items from the array';
+  const actual = pluck(arr, 'name');
+  const expected = ['moe', 'homer', 'Sideshow Bob'];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should slice an array', (assert) => {
+  const msg = 'should slice an array with a start/end';
+  const arr = [1, 2, 3, 4, 5, 6];
+  const actual = slice(1, 4, arr);
+  const expected = [2, 3, 4];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should test if item is contained in an array', (assert) => {
+  const msg = 'should return boolean if item is in collection';
+  const actual = contains('sam', [1, 3, 'sam', 'mike']);
+  const expected = true;
 
   assert.same(actual, expected, msg);
   assert.end();
