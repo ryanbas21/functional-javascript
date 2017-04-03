@@ -1,4 +1,4 @@
-const test = require('tape');
+const test = require('blue-tape');
 const {
   some,
   every,
@@ -20,6 +20,7 @@ const {
   slice,
   uniq,
   range,
+  delay
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -243,4 +244,10 @@ test('should create a range', (assert) => {
 
   assert.same(actual, expected, msg);
   assert.end();
+});
+//practice blue tape test
+test('simple delay', (assert) => {
+  return delay().then((value) => {
+    assert.same(value, 'Success!');
+  });
 });
