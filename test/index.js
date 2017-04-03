@@ -20,7 +20,8 @@ const {
   slice,
   uniq,
   range,
-  delay
+  delay,
+  reduceRight
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -250,4 +251,31 @@ test('simple delay', (assert) => {
   return delay().then((value) => {
     assert.same(value, 'Success!');
   });
+});
+
+test('should test reduceRight', (assert) => {
+  const msg = 'reduceRight should add accumulate the array';
+  const actual = reduceRight((acc, curr) => acc + curr, 0, [1, 2, 3, 4, 5, 6]);
+  const expected = 21;
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('reduce should work with objects', (assert) => {
+  const msg = 'reduceRight should work with objects';
+  const cb = (acc, curr) => {
+    if (acc[curr] === undefined) acc[curr] = curr;
+    return acc;
+  };
+  const actual = reduceRight(cb, {}, ['ryan', 'eric', 'paul', 'lourdes']);
+  const expected = {
+    ryan: 'ryan',
+    eric: 'eric',
+    paul: 'paul',
+    lourdes: 'lourdes',
+  };
+
+  assert.deepEqual(actual, expected, msg);
+  assert.end();
 });
