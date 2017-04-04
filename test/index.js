@@ -24,6 +24,7 @@ const {
   dropRight,
   reject,
   zip,
+  concat,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -294,6 +295,15 @@ test('should test reject', (assert) => {
     'mike',
   ]);
   const expected = ['testing', 'filter'];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should concat two arrays', (assert) => {
+  const msg = 'n arrays should be concated';
+  const actual = concat([1], [2, 3, 4], [5, 6]);
+  const expected = [1, 2, 3, 4, 5, 6];
 
   assert.same(actual, expected, msg);
   assert.end();
