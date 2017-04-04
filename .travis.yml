@@ -2,9 +2,21 @@ language: node_js
 node_js:
 - 7
 - 6
+cache:
+  yarn: true
+  directories:
+    - node_modules
 notifications:
-  email: true
-cache: yarn
+  email:
+    recipients:
+      - ryanbas21@gmail.com
+    on_success: never # default: change
+    on_failure: always # default: always
 env:
   global:
     secure: tDTWeof0j8WqEks2030Q7Ayx8COa3hMylXcKEMw4LyEzFSAfdbrdv30h73dPQWQrETzRuwTZr9gLRxCJJZRYH6YR2BQcozhD6z8pguJD0G5w5v5dfH0OLl/Z3zuUWUvBzrphgEdf9pSAkXdiQSUD1LJteelNzu5X9sFndHTDLYA8b9lv1B1EsJG3n9AJVYHtswAadP/apWkw4GRyV2VBqkdyy/UgfNB2vag04+ANhUIb7WUHm+ZyXAJWmReUD//EQ/275QxSL0NgwC6c39iqjJZd2L0FJaD+0+v2ALcaRG7vXmn0IiF4NCb0LdWsDY38isiIt/WXdkpnHmlQVwyJE1bvm4X0abmNprfLyE1kPRx2xUTI0YGKdvgFcs2GzuxW9qZJE3j4NmBwe6mC5g9jpz6hYUUkjHcflK45c49ZJQTkUbvhyFUodTIBqK+Ff57mELguEdEdASFCz6d97rlyuiK5eWUbM1GbH/IjsQRWmuJ6LYSJuAUkI4jZ+qTQYCyvANKVKEPeO3CyEHwX8peKCfneaq89oyKxPODJAPWjZcMdrmXrBm54C26Vu8dVSePHVAvsjh4eBvy+BLPNHUD61TcAETKze9JYPWKia8Re+vl3ArjStljJbmPKskh/Sgh6DLoFRxoNWBCT0QCsDzKCATS6w2WSsidloIw1DCD8D4o=
+
+after_success:
+  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
+  - "chmod a+x /tmp/travis-automerge"
+  - "BRANCHES_TO_MERGE_REGEX='^f/' BRANCH_TO_MERGE_INTO=develop GITHUB_REPO=cdown/srt /tmp/travis-automerge"
