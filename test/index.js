@@ -21,7 +21,8 @@ const {
   uniq,
   range,
   delay,
-  reduceRight
+  reduceRight,
+  dropRight,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -246,12 +247,11 @@ test('should create a range', (assert) => {
   assert.same(actual, expected, msg);
   assert.end();
 });
-//practice blue tape test
-test('simple delay', (assert) => {
-  return delay().then((value) => {
+// practice blue tape test
+test('simple delay', assert =>
+  delay().then((value) => {
     assert.same(value, 'Success!');
-  });
-});
+  }));
 
 test('should test reduceRight', (assert) => {
   const msg = 'reduceRight should add accumulate the array';
@@ -277,5 +277,14 @@ test('reduce should work with objects', (assert) => {
   };
 
   assert.deepEqual(actual, expected, msg);
+  assert.end();
+});
+
+test('should test drop right', (assert) => {
+  const msg = 'should drop 3 elements from the right';
+  const actual = dropRight(3, [1, 2, 3, 4, 5, 6, 7]);
+  const expected = [1, 2, 3, 4];
+
+  assert.same(actual, expected, msg);
   assert.end();
 });
