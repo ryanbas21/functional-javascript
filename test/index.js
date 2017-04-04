@@ -24,6 +24,7 @@ const {
   reduceRight,
   dropRight,
   reject,
+  zip,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -298,3 +299,13 @@ test('should test filter', (assert) => {
   assert.same(actual, expected, msg);
   assert.end();
 });
+
+test('Should test zip', (assert) => {
+  const msg = 'should zip together the arrays';
+  const expected = [['a', 1, true], ['b', 2, false]];
+  const actual = zip(['a', 'b'], [1, 2], [true, false]);
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+

@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint lib/* && eslint test/*",
     "pretest": "npm run -s lint",
     "test": "cross-env NODE_PATH='source' node test/index.js | tap-dot",
     "watch": "watch 'clear && npm run -s test' lib"
