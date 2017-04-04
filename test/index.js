@@ -23,6 +23,7 @@ const {
   delay,
   reduceRight,
   dropRight,
+  reject,
 } = require('../lib/index.js');
 
 test('should test compose', (assert) => {
@@ -284,6 +285,20 @@ test('should test drop right', (assert) => {
   const msg = 'should drop 3 elements from the right';
   const actual = dropRight(3, [1, 2, 3, 4, 5, 6, 7]);
   const expected = [1, 2, 3, 4];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('should test filter', (assert) => {
+  const msg = 'should filter out words less than 5 chars long';
+  const actual = reject(word => word.length < 5, [
+    'ryan',
+    'testing',
+    'filter',
+    'mike',
+  ]);
+  const expected = ['testing', 'filter'];
 
   assert.same(actual, expected, msg);
   assert.end();
