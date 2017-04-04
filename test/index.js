@@ -248,11 +248,6 @@ test('should create a range', (assert) => {
   assert.same(actual, expected, msg);
   assert.end();
 });
-// practice blue tape test
-test('simple delay', assert =>
-  delay().then((value) => {
-    assert.same(value, 'Success!');
-  }));
 
 test('should test reduceRight', (assert) => {
   const msg = 'reduceRight should add accumulate the array';
