@@ -20,7 +20,6 @@ const {
   slice,
   uniq,
   range,
-  delay,
   reduceRight,
   dropRight,
   reject,
@@ -286,8 +285,8 @@ test('should test drop right', (assert) => {
   assert.end();
 });
 
-test('should test filter', (assert) => {
-  const msg = 'should filter out words less than 5 chars long';
+test('should test reject', (assert) => {
+  const msg = 'should reject out words less than 5 chars long';
   const actual = reject(word => word.length < 5, [
     'ryan',
     'testing',
@@ -299,13 +298,3 @@ test('should test filter', (assert) => {
   assert.same(actual, expected, msg);
   assert.end();
 });
-
-test('Should test zip', (assert) => {
-  const msg = 'should zip together the arrays';
-  const expected = [['a', 1, true], ['b', 2, false]];
-  const actual = zip(['a', 'b'], [1, 2], [true, false]);
-
-  assert.same(actual, expected, msg);
-  assert.end();
-});
-
